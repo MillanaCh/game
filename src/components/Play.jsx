@@ -3,11 +3,14 @@ import Header from "./Header";
 import { useState } from "react";
 import Categories from "./extraComponents/Category";
 import axios from "axios";
+import * as actions from "../redux/actions/actions"
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Play() {
   const [allQuestions, setAllQuestions] = useState([]);
   const [valueNumbers, setValueNumbers] = useState({});
+  const dispatch = useDispatch()
+
 
   //   fetch data
   const callApi = async () => {
@@ -25,7 +28,6 @@ export default function Play() {
 
   //   Category Part
   const [categories, setCategories] = useState([]);
-
   const categoryList = [
     ...new Set(allQuestions.map((item) => item.category.title)),
   ];
@@ -46,11 +48,12 @@ export default function Play() {
     (item) => item.category.title === categories
   );
 
+
   useEffect(() => {
     setValueNumbers(filtered);
   }, [categories]);
 
-//   console.log(filtered);
+  //   console.log(filtered);
   //   console.log(categoryList)
 
   let [selectedQ, setSelectedQ] = useState();
