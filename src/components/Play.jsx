@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 export default function Play() {
   const [allQuestions, setAllQuestions] = useState([]);
   const [valueNumbers, setValueNumbers] = useState({});
-  const dispatch = useDispatch()
+  //   const dispatch = useDispatch()
 
 
   //   fetch data

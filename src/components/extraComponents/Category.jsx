@@ -16,7 +16,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const lightTheme = createTheme({ palette: { mode: "light" } });
 
 const Categories = () => {
-  const data = useSelector(state => console.log(state))
+//   const data = useSelector(state => console.log(state))
   return (
     <>
       <Grid container spacing={4}>

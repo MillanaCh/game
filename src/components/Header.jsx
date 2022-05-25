@@ -34,10 +34,10 @@ export default function Header() {
           }}
         >
           <Link to="/play" className="link-part">
-            Play
+            <h3>Play</h3>
           </Link>
           <Link to="/statistics" className="link-part">
-            Statistics
+            <h3> Statistics</h3>
           </Link>
         </Grid>
       </Grid>
