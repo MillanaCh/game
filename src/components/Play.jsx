@@ -2,35 +2,34 @@ import React, { useEffect } from "react";
 import Header from "./Header";
 import { useState } from "react";
 import Categories from "./extraComponents/Category";
-import axios from "axios";
-import * as actions from "../redux/actions/actions"
 import { useSelector, useDispatch } from "react-redux";
+import { callTheApi } from "../redux/QuestionsSlice";
 
 export default function Play() {
-  const [allQuestions, setAllQuestions] = useState([]);
-  const [valueNumbers, setValueNumbers] = useState({});
-  //   const dispatch = useDispatch()
-
-
-  //   fetch data
-  const callApi = async () => {
-    try {
-      const response = await axios.get("https://jservice.io/api/clues");
-      setAllQuestions(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [allData, setAllData] = useState([]);
+  let data = useSelector((state) => [state.data]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    callApi();
+    dispatch(callTheApi());
   }, []);
 
-  //   Category Part
+  //   useEffect(() => {
+  //     setAllData(data[0]);
+  //   }, []);
+
+  // Category Part
   const [categories, setCategories] = useState([]);
   const categoryList = [
-    ...new Set(allQuestions.map((item) => item.category.title)),
+    ...new Set(data[0]?.map((item) => item.category.title)),
   ];
+
+  useEffect(() => {
+    setCategories(categoryList);
+  }, []);
+
+  //   const [valueNumbers, setValueNumbers] = useState({});
+
   //   let newObj = {};
   //   let newNew = allQuestions.map(
   //     (el) => (newObj[el.category.title] = [el.value])
@@ -44,28 +43,20 @@ export default function Play() {
   //   });
   //   console.log(value, "values");
 
-  let filtered = allQuestions.filter(
-    (item) => item.category.title === categories
-  );
+  //   let filtered = allQuestions.filter(
+  //     (item) => item.category.title === categories
+  //   );
 
+  //   useEffect(() => {
+  //     setValueNumbers(filtered);
+  //   }, [categories]);
 
-  useEffect(() => {
-    setValueNumbers(filtered);
-  }, [categories]);
-
-  //   console.log(filtered);
-  //   console.log(categoryList)
-
-  let [selectedQ, setSelectedQ] = useState();
-
-  useEffect(() => {
-    setCategories(categoryList);
-  }, [allQuestions]);
+  //   let [selectedQ, setSelectedQ] = useState();
 
   return (
     <div>
       <Header />
-      <Categories />
+      <Categories categories={categories} />
     </div>
   );
 }

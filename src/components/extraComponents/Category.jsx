@@ -1,8 +1,9 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Grid, Box, Paper } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import { useSelector, useDispatch } from "react-redux";
+import { callTheApi } from "../../redux/QuestionsSlice";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -15,8 +16,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const lightTheme = createTheme({ palette: { mode: "light" } });
 
-const Categories = () => {
-//   const data = useSelector(state => console.log(state))
+const Categories = ({categories}) => {
   return (
     <>
       <Grid container spacing={4}>
@@ -33,11 +33,11 @@ const Categories = () => {
                     gap: 2,
                   }}
                 >
-                  {/* {categories?.map((categoryname) => (
+                  {categories?.map((categoryname) => (
                     <Item key={uuidv4()} categoryname={categoryname}>
                       {categoryname}
                     </Item>
-                  ))} */}
+                  ))}
                 </Box>
               </ThemeProvider>
             </Grid>
