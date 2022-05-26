@@ -1,6 +1,6 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Grid, Box, Button } from "@mui/material";
+import { Grid, Box, Button , Card} from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
 const Questions = ({ el, theme }) => {
@@ -18,9 +18,9 @@ const Questions = ({ el, theme }) => {
             }}
           >
             {el[1].map((be) => (
-              <Button variant="contained" size="large">
+              <Card variant="contained" size="large">
                 {be.value}
-              </Button>
+              </Card>
             ))}
           </Box>
         </ThemeProvider>

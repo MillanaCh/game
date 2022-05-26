@@ -7,6 +7,7 @@ import { callTheApi } from "./redux/QuestionsSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Info from "./components/Info";
+import Start from "./components/Start";
 
 function App() {
   const dispatch = useDispatch();

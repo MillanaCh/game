@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import Header from "./Header";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../redux/actions/actions";
 export default function MainPage() {
+  let dispatch = useDispatch();
   const [userName, setUserName] = useState("");
   const handleClick = (e) => {
     e.preventDefault();
+    dispatch({ type: actions.LOGIN_NAME, payload: userName });
   };
+  const handleChange = (e) => {
+    setUserName(e.target.value);
+  };
+
   return (
     <>
       <Header />
@@ -16,7 +24,7 @@ export default function MainPage() {
           <input
             placeholder="your name"
             className="input-name"
-            onChange={(e) => console.log(e.target.name)}
+            onChange={(e) => handleChange(e)}
           />
           <button
             className="btn-name"
