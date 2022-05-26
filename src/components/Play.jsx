@@ -4,19 +4,10 @@ import { useState } from "react";
 import Categories from "./extraComponents/Category";
 import { useSelector } from "react-redux";
 import Questions from "./extraComponents/Questions";
-import { createTheme, styled } from "@mui/material/styles";
-import { Grid, Paper } from "@mui/material";
-import { v4 as uuidv4 } from "uuid";
+import { createTheme } from "@mui/material/styles";
+import { Grid } from "@mui/material";
 
 // Style
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-  height: 50,
-  lineHeight: "30px",
-  fontSize: "16px",
-}));
 const lightTheme = createTheme({ palette: { mode: "light" } });
 
 export default function Play() {
@@ -50,7 +41,7 @@ export default function Play() {
   return (
     <>
       <Header />
-      <Grid container spacing={4}>
+      <Grid container spacing={4} sx={{padding:"5px"}}>
         {[lightTheme].map((theme) => (
           <>
             {filteredData.map((el) => (

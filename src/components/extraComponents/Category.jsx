@@ -5,11 +5,12 @@ import { ThemeProvider, styled } from "@mui/material/styles";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
+  backgroundColor: "#08aa63",
   textAlign: "center",
   color: theme.palette.text.secondary,
-  height: 45,
-  lineHeight: "45px",
-  fontSize: "14px",
+  height: 60,
+  lineHeight: "55px",
+  fontSize: "18px",
 }));
 
 const Categories = ({ el, theme }) => {
@@ -22,7 +23,7 @@ const Categories = ({ el, theme }) => {
         <ThemeProvider theme={theme}>
           <Box
             sx={{
-              p: 2,
+              paddingTop: "5px",
               bgcolor: "background.default",
               display: "grid",
               gridTemplateColumns: { md: "1fr" },

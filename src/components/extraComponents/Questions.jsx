@@ -1,7 +1,17 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Grid, Box, Button , Card} from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
+import { Grid, Box, Card, Paper } from "@mui/material";
+import { ThemeProvider, styled } from "@mui/material/styles";
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  backgroundColor:"#097a55",
+  textAlign: "center",
+  color: "white",
+  height: 60,
+  lineHeight: "55px",
+  fontSize: "18px",
+}));
 
 const Questions = ({ el, theme }) => {
   return (
@@ -10,7 +20,7 @@ const Questions = ({ el, theme }) => {
         <ThemeProvider theme={theme}>
           <Box
             sx={{
-              p: 2,
+              paddingTop: "5px",
               bgcolor: "background.default",
               display: "grid",
               gridTemplateColumns: { md: "1fr 1fr 1fr 1fr 1fr" },
@@ -18,9 +28,7 @@ const Questions = ({ el, theme }) => {
             }}
           >
             {el[1].map((be) => (
-              <Card variant="contained" size="large">
-                {be.value}
-              </Card>
+              <Item>{be.value}</Item>
             ))}
           </Box>
         </ThemeProvider>
