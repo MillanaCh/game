@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
-import mainImg from "../images/img.png";
 export default function MainPage() {
+  const [userName, setUserName] = useState("");
+  const handleClick = (e) => {
+    e.preventDefault();
+  };
   return (
     <>
       <Header />
-      <img src={mainImg} width="100%" />
+      <div className="background-logo">
+        <form className="container">
+          <label className="label-name">
+            <b> Write your name!</b>
+          </label>
+          <input
+            placeholder="your name"
+            className="input-name"
+            onChange={(e) => console.log(e.target.name)}
+          />
+          <button
+            className="btn-name"
+            type="submit"
+            onClick={(e) => handleClick(e)}
+          >
+            Enter
+          </button>
+        </form>
+      </div>
     </>
   );
 }

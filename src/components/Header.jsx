@@ -39,6 +39,9 @@ export default function Header() {
           <Link to="/statistics" className="link-part">
             <h3> Statistics</h3>
           </Link>
+          <Link to="/info" className="link-part">
+            <h3>About</h3>
+          </Link>
         </Grid>
       </Grid>
     </>

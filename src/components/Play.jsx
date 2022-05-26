@@ -26,7 +26,7 @@ export default function Play() {
 
   function allQuestions() {
     const allquestions = data[0].reduce((acc, question) => {
-      if (question.category.title in acc) {
+      if (question.category.title in acc && question.value) {
         acc[question.category.title].push(question);
       } else {
         acc[question.category.title] = [question];
@@ -43,8 +43,6 @@ export default function Play() {
     if (el[1].length === 5) filteredData.push(el);
     return el;
   });
-
-  // console.log(filteredData, "filteredData");
 
   useEffect(() => {
     allQuestions();

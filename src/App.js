@@ -4,8 +4,9 @@ import MainPage from "./components/MainPage";
 import Play from "./components/Play";
 import Statistics from "./components/Statistics";
 import { callTheApi } from "./redux/QuestionsSlice";
-import { useDispatch } from "react-redux"
-import {useEffect} from "react"
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import Info from "./components/Info";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<MainPage />}></Route>
         <Route path="/play" element={<Play />}></Route>
         <Route path="/statistics" element={<Statistics />}></Route>
+        <Route path="/info" element={<Info />}></Route>
       </Routes>
     </div>
   );
