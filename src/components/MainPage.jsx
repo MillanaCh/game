@@ -18,7 +18,7 @@ export default function MainPage() {
       <Header />
       <div className="background-logo">
         <form className="container">
-          <label className="label-name">
+          <label className="label-name" style={{ color: "white" }}>
             <b> Write your name!</b>
           </label>
           <input
@@ -31,7 +31,7 @@ export default function MainPage() {
             type="submit"
             onClick={(e) => handleClick(e)}
           >
-            Enter
+            <h3>Enter</h3>
           </button>
         </form>
       </div>

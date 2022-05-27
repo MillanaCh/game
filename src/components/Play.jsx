@@ -3,15 +3,12 @@ import Header from "./Header";
 import { useState } from "react";
 import Categories from "./extraComponents/Category";
 import { useSelector } from "react-redux";
-import Questions from "./extraComponents/Questions";
-import { createTheme } from "@mui/material/styles";
-import { Grid } from "@mui/material";
-
-// Style
-const lightTheme = createTheme({ palette: { mode: "light" } });
+import { Grid, Card } from "@mui/material";
+// import { v4 as uuidv4 } from "uuid";
 
 export default function Play() {
   let data = useSelector((state) => [state.data]);
+  let answer = useSelector((state) => state.answerCheck);
 
   const [questions, setAllQuestions] = useState({});
 
@@ -26,7 +23,6 @@ export default function Play() {
     }, {});
     setAllQuestions(allquestions);
   }
-  // console.log(questions);
   let dataArray = Object.entries(questions);
   let filteredData = [];
 
@@ -41,38 +37,26 @@ export default function Play() {
   return (
     <>
       <Header />
-      <Grid container spacing={4} sx={{padding:"5px"}}>
-        {[lightTheme].map((theme) => (
+      <Card sx={{ backgroundColor: "#136998", borderRadius: "0" }}>
+        {filteredData.map((el, index) => (
           <>
-            {filteredData.map((el) => (
-              <>
-                <Grid item xs={4}>
-                  <Categories el={el} theme={theme} />
-                </Grid>
-                <Grid item xs={8}>
-                  <Questions el={el} theme={theme} />
-                </Grid>
-              </>
-            ))}
+            <Grid item xs={12}>
+              <Categories el={el} />
+            </Grid>
           </>
         ))}
-      </Grid>
+        <Card
+          sx={{
+            width: "20%",
+            height: "40px",
+            margin: "10px 3px",
+            color: "white",
+            backgroundColor: "#042c42",
+          }}
+        >
+          <h3 className="bottomAnswer">Millana</h3>
+        </Card>
+      </Card>
     </>
   );
 }
-
-//   data[0].forEach(item => {
-//       const categ = [];
-//       const newData = [];
-//       if (!categ.includes(item.category_id)) {
-//         categ.push(category_id);
-//         newData.push({...item.category, clues: [{...item}]})
-//       } else {
-//         //  push only clues part
-//       }
-//   });
-
-//   const [value, setValue] = useState()
-
-// let filtered = data[0]?.filter((item) => item.category.title === "baseball");
-//   { name: "BASE", id: 2, games: [{ value: 100, quest: 'efwg' }]}

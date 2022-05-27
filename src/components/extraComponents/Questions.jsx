@@ -1,38 +1,93 @@
-import React from "react";
-import { v4 as uuidv4 } from "uuid";
-import { Grid, Box, Card, Paper } from "@mui/material";
-import { ThemeProvider, styled } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  TextField,
+  DialogContentText,
+  DialogActions,
+  Toolbar,
+  FormControl,
+} from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "../../redux/actions/actions";
 
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  backgroundColor:"#097a55",
-  textAlign: "center",
-  color: "white",
-  height: 60,
-  lineHeight: "55px",
-  fontSize: "18px",
-}));
+const Questions = ({ el }) => {
+  let dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const [selectedElement, setSelectedElement] = useState([]);
+  const [answer, setAnswer] = useState("");
+  const [isRight, setIsRight] = useState(null);
+  const [answer2, setAnswer2] = useState("");
 
-const Questions = ({ el, theme }) => {
+  const handleClickOpen = (item) => {
+    setOpen(true);
+    setSelectedElement(item);
+  };
+  const handleClose = () => setOpen(false);
+
+  const handleCheck = (e) => {
+    e.preventDefault();
+    setAnswer2(answer);
+    checkAnswer();
+    setOpen(false);
+  };
+  //    dispatch({ type: actions.ADDPOINTS, payload: isRight });
+  const handleChangeInput = (e) => {
+    setAnswer(e.target.value);
+  };
+
+  function checkAnswer() {
+    if (answer2 === selectedElement.answer) {
+      setIsRight(true);
+    } else {
+      setIsRight(false);
+    }
+  }
+
+  // useEffect(() => {
+  // }, [answer2]);
+
   return (
     <>
-      <Grid item xs={12}>
-        <ThemeProvider theme={theme}>
-          <Box
-            sx={{
-              paddingTop: "5px",
-              bgcolor: "background.default",
-              display: "grid",
-              gridTemplateColumns: { md: "1fr 1fr 1fr 1fr 1fr" },
-              gap: 2,
-            }}
-          >
-            {el[1].map((be) => (
-              <Item>{be.value}</Item>
-            ))}
-          </Box>
-        </ThemeProvider>
-      </Grid>
+      {el[1].map((item) => (
+        <button
+          className="valueBtn"
+          onClick={() => handleClickOpen(item)}
+          key={item.id}
+        >
+          {item.value}
+        </button>
+      ))}
+      <div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          style={{ backgroundColor: "transparent", boxShadow: "none" }}
+        >
+          <Toolbar>
+            <DialogTitle>{el[0].toUpperCase()}</DialogTitle>
+            <DialogTitle>{selectedElement.value}</DialogTitle>
+          </Toolbar>
+          <DialogContent>
+            <DialogContentText>{selectedElement.question}</DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="answer"
+              label="answer"
+              type="text"
+              fullWidth
+              variant="standard"
+              onChange={(e) => handleChangeInput(e)}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={(e) => handleCheck(e)}>Check</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </>
   );
 };
