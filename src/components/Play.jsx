@@ -9,7 +9,6 @@ import { Grid, Card } from "@mui/material";
 export default function Play() {
   let data = useSelector((state) => [state.data]);
   let answer = useSelector((state) => state.answerCheck);
-
   const [questions, setAllQuestions] = useState({});
 
   function allQuestions() {
@@ -54,7 +53,7 @@ export default function Play() {
             backgroundColor: "#042c42",
           }}
         >
-          <h3 className="bottomAnswer">Millana</h3>
+          <h3 className="bottomAnswer">{answer}</h3>
         </Card>
       </Card>
     </>

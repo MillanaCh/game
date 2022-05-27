@@ -10,45 +10,62 @@ import {
   Toolbar,
   FormControl,
 } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as actions from "../../redux/actions/actions";
+import { debounce } from "lodash";
 
 const Questions = ({ el }) => {
   let dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [selectedElement, setSelectedElement] = useState([]);
   const [answer, setAnswer] = useState("");
-  const [isRight, setIsRight] = useState(null);
-  const [answer2, setAnswer2] = useState("");
+  const [isRight, setIsRight] = useState("");
+  // const [answer2, setAnswer2] = useState("");
 
+  // Timer Part
+  const [quizTime, setQuizTime] = useState(15);
   const handleClickOpen = (item) => {
     setOpen(true);
+    startTimer(15);
     setSelectedElement(item);
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleCheck = (e) => {
     e.preventDefault();
-    setAnswer2(answer);
-    checkAnswer();
     setOpen(false);
-  };
-  //    dispatch({ type: actions.ADDPOINTS, payload: isRight });
-  const handleChangeInput = (e) => {
-    setAnswer(e.target.value);
+    dispatch({ type: actions.ADDPOINTS, payload: isRight });
   };
 
+  const handleChangeInput = debounce((e) => {
+    setAnswer(e.target.value);
+  }, 1000);
+
   function checkAnswer() {
-    if (answer2 === selectedElement.answer) {
-      setIsRight(true);
+    if (answer === selectedElement.answer) {
+      setIsRight("Right Answer");
     } else {
-      setIsRight(false);
+      setIsRight("Wrong Answer");
     }
   }
 
-  // useEffect(() => {
-  // }, [answer2]);
+  useEffect(() => {
+    checkAnswer();
+  }, [answer]);
 
+  let counter;
+  function startTimer(time) {
+    counter = setInterval(timer, 1000);
+    function timer() {
+      setQuizTime(time);
+      time--;
+      // if ((time = 0)) {
+      //   handleClose();
+      // }
+    }
+  }
   return (
     <>
       {el[1].map((item) => (
@@ -67,16 +84,25 @@ const Questions = ({ el }) => {
           style={{ backgroundColor: "transparent", boxShadow: "none" }}
         >
           <Toolbar>
-            <DialogTitle>{el[0].toUpperCase()}</DialogTitle>
-            <DialogTitle>{selectedElement.value}</DialogTitle>
+            <DialogTitle sx={{ color: "#0d597f", fontWeight: "bold" }}>
+              {el[0].toUpperCase()}
+            </DialogTitle>
+            <DialogTitle sx={{ color: "#0d597f", fontWeight: "bold" }}>
+              {selectedElement.value}
+            </DialogTitle>
           </Toolbar>
           <DialogContent>
-            <DialogContentText>{selectedElement.question}</DialogContentText>
+            <DialogContentText sx={{ color: "black" }}>
+              <b>Question:</b> {selectedElement.question}
+            </DialogContentText>
+            <DialogContentText sx={{ color: "black" }}>
+              <b>Time Left:</b> {quizTime}
+            </DialogContentText>
             <TextField
               autoFocus
               margin="dense"
               id="answer"
-              label="answer"
+              label="Write answer"
               type="text"
               fullWidth
               variant="standard"

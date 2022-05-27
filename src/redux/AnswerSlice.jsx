@@ -1,9 +1,9 @@
 import * as actions from "./actions/actions";
 
-const answerReducer = (state = "", action) => {
+const answerReducer = (state = null, action) => {
   switch (action.type) {
     case actions.ADDPOINTS:
-      return [...state, action.payload];
+      return [action.payload];
     default:
       return state;
   }
