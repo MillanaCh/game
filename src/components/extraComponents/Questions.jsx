@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  TextField,
-  DialogContentText,
-  DialogActions,
-  Toolbar,
-  FormControl,
-} from "@mui/material";
+import { Dialog, DialogContent, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
 import * as actions from "../../redux/actions/actions";
 import { debounce } from "lodash";
@@ -23,10 +13,11 @@ const Questions = ({ el }) => {
   // const [answer2, setAnswer2] = useState("");
 
   // Timer Part
-  const [quizTime, setQuizTime] = useState(15);
+  const [quizTime, setQuizTime] = useState();
   const handleClickOpen = (item) => {
+    setQuizTime(60);
+    startTimer(60);
     setOpen(true);
-    startTimer(15);
     setSelectedElement(item);
   };
   const handleClose = () => {
@@ -41,7 +32,7 @@ const Questions = ({ el }) => {
 
   const handleChangeInput = debounce((e) => {
     setAnswer(e.target.value);
-  }, 1000);
+  }, 5000);
 
   function checkAnswer() {
     if (answer === selectedElement.answer) {
@@ -55,15 +46,18 @@ const Questions = ({ el }) => {
     checkAnswer();
   }, [answer]);
 
+  // console.log(isRight); //infinite Loop
+
   let counter;
   function startTimer(time) {
     counter = setInterval(timer, 1000);
     function timer() {
       setQuizTime(time);
       time--;
-      // if ((time = 0)) {
-      //   handleClose();
-      // }
+      if (time === 0) {
+        setOpen(false);
+        dispatch({ type: actions.ADDPOINTS, payload: isRight });
+      }
     }
   }
   return (
@@ -78,26 +72,16 @@ const Questions = ({ el }) => {
         </button>
       ))}
       <div>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          style={{ backgroundColor: "transparent", boxShadow: "none" }}
-        >
-          <Toolbar>
-            <DialogTitle sx={{ color: "#0d597f", fontWeight: "bold" }}>
-              {el[0].toUpperCase()}
-            </DialogTitle>
-            <DialogTitle sx={{ color: "#0d597f", fontWeight: "bold" }}>
-              {selectedElement.value}
-            </DialogTitle>
-          </Toolbar>
+        <Dialog open={open} onClose={handleClose}>
+          <div className="toolbar">
+            <h3>{el[0].toUpperCase()}</h3>
+            <h3>{selectedElement.value}</h3>
+          </div>
           <DialogContent>
-            <DialogContentText sx={{ color: "black" }}>
-              <b>Question:</b> {selectedElement.question}
-            </DialogContentText>
-            <DialogContentText sx={{ color: "black" }}>
-              <b>Time Left:</b> {quizTime}
-            </DialogContentText>
+            <div className="questionDialog">
+              <h4>Question:</h4>
+              <p>{selectedElement.question}</p>
+            </div>
             <TextField
               autoFocus
               margin="dense"
@@ -109,9 +93,14 @@ const Questions = ({ el }) => {
               onChange={(e) => handleChangeInput(e)}
             />
           </DialogContent>
-          <DialogActions>
-            <Button onClick={(e) => handleCheck(e)}>Check</Button>
-          </DialogActions>
+          <div className="timeDisplay">
+            <h3>
+              Time Left: <span>{quizTime}</span>
+            </h3>
+            <button className="btnDialog" onClick={(e) => handleCheck(e)}>
+              Check
+            </button>
+          </div>
         </Dialog>
       </div>
     </>

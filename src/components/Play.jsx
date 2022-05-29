@@ -44,17 +44,31 @@ export default function Play() {
             </Grid>
           </>
         ))}
-        <Card
-          sx={{
-            width: "20%",
-            height: "40px",
-            margin: "10px 3px",
-            color: "white",
-            backgroundColor: "#042c42",
-          }}
-        >
-          <h3 className="bottomAnswer">{answer}</h3>
-        </Card>
+        {answer == "Wrong Answer" ? (
+          <Card
+            sx={{
+              width: "20%",
+              height: "60px",
+              margin: "10px 3px",
+              color: "white",
+              backgroundColor: "#cb1717",
+            }}
+          >
+            <h3 className="bottomAnswer">{answer}</h3>
+          </Card>
+        ) : (
+          <Card
+            sx={{
+              width: "20%",
+              height: "60px",
+              margin: "10px 3px",
+              color: "white",
+              backgroundColor: "#042c42",
+            }}
+          >
+            <h3 className="bottomAnswer">{answer}</h3>
+          </Card>
+        )}
       </Card>
     </>
   );

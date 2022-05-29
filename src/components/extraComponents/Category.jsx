@@ -9,7 +9,7 @@ const Item = styled(Paper)(() => ({
   alignItems: "center",
   justifyContent: "space-around",
   color: "white",
-  height: 55,
+  height: 60,
   lineHeight: "55px",
   fontSize: "16px",
 }));
@@ -28,7 +28,7 @@ const Categories = ({ el }) => {
           <Grid item xs={12} sx={{ margin: "4px" }}>
             <Item>
               <Grid item sx={{ minWidth: "300px" }}>
-                {el[0].toUpperCase()}
+                <p className="category-name">{el[0].toUpperCase()}</p>
               </Grid>
               <Questions el={el} />
             </Item>
