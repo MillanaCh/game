@@ -53,13 +53,6 @@
   color: white;
   border-radius: 4px;
 }
-.btn-start {
-  width: 40%;
-  height: 45px;
-  text-align: center;
-  font-size: 20px;
-  margin: 20% 0 0 30%;
-}
 .valueBtn {
   width: 180px;
   text-align: center;
@@ -70,6 +63,23 @@
   font-family: "Fredoka One", cursive;
   border-radius: 5px;
   border: none;
+}
+.valueUsed {
+  width: 180px;
+  text-align: center;
+  height: 45px;
+  background-color: #faeb56;
+  color: white;
+  font-size: 15px;
+  font-family: "Fredoka One", cursive;
+  border-radius: 5px;
+  border: none;
+}
+.style-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: whitesmoke;
 }
 .bottomAnswer {
   text-align: center;
@@ -83,7 +93,30 @@
   color: black;
   border-radius: 5px;
 }
-
+/* Start page */
+.btn-start {
+  width: 85%;
+  height: 55px;
+  text-align: center;
+  font-size: 20px;
+  margin: 55% 450px 0 0;
+  border: none;
+  background-color: #faeb56;
+  border-radius: 10px;
+  font-family: "Josefin Sans", sans-serif;
+}
+.start-rules {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 20px;
+  line-height: 25px;
+  color: white;
+  margin: 12% 0 0 70px;
+}
+.rules {
+  padding: 5px 0 0 0;
+  margin: 20px 0 0 0;
+  line-height: 40px;
+}
 /* Dialog Part */
 .toolbar {
   display: flex;

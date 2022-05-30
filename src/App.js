@@ -7,6 +7,7 @@ import { callTheApi } from "./redux/QuestionsSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Info from "./components/Info";
+import Start from "./components/Start";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,10 +18,11 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<MainPage />}></Route>
-        <Route path="/play" element={<Play />}></Route>
-        <Route path="/statistics" element={<Statistics />}></Route>
-        <Route path="/info" element={<Info />}></Route>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/play" element={<Start />} />
+        <Route path="/startplaying" element={<Play />} />
+        <Route path="/statistics" element={<Statistics />} />
+        <Route path="/info" element={<Info />} />
       </Routes>
     </div>
   );

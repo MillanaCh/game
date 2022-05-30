@@ -9,8 +9,10 @@ import { Grid, Card } from "@mui/material";
 export default function Play() {
   let data = useSelector((state) => [state.data]);
   let answer = useSelector((state) => state.answerCheck);
+  let rightAnswer = useSelector((state) => state.rightAnswer);
   const [questions, setAllQuestions] = useState({});
 
+  // let mapRightAnswer = rightAnswer?.map((el) => el.answer);
   function allQuestions() {
     const allquestions = data[0].reduce((acc, question) => {
       if (question.category.title in acc && question.value) {
@@ -45,17 +47,22 @@ export default function Play() {
           </>
         ))}
         {answer == "Wrong Answer" ? (
-          <Card
-            sx={{
-              width: "20%",
-              height: "60px",
-              margin: "10px 3px",
-              color: "white",
-              backgroundColor: "#cb1717",
-            }}
-          >
-            <h3 className="bottomAnswer">{answer}</h3>
-          </Card>
+          <Grid container spacing={2}>
+            <Card
+              sx={{
+                width: "20%",
+                height: "60px",
+                margin: "24px 0 13px 21px",
+                color: "white",
+                backgroundColor: "#cb1717",
+              }}
+            >
+              <h3 className="bottomAnswer">{answer}</h3>
+            </Card>
+            <h3 style={{ margin: "35px  0 0 40px" }}>
+              The right answer is: {rightAnswer?.map((el) => el.answer)}
+            </h3>
+          </Grid>
         ) : (
           <Card
             sx={{
@@ -69,6 +76,7 @@ export default function Play() {
             <h3 className="bottomAnswer">{answer}</h3>
           </Card>
         )}
+        {/* <h3>Finish</h3> */}
       </Card>
     </>
   );

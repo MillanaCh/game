@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Header from "./Header";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as actions from "../redux/actions/actions";
+import { Link, Navigate } from "react-router-dom";
 export default function MainPage() {
   let dispatch = useDispatch();
   const [userName, setUserName] = useState("");
@@ -31,7 +32,7 @@ export default function MainPage() {
             type="submit"
             onClick={(e) => handleClick(e)}
           >
-            <h3>Enter</h3>
+            Enter
           </button>
         </form>
       </div>

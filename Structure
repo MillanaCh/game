@@ -1,12 +1,16 @@
 To Do
 
 About
-    1) make info part carousel QA
+    1) make info part carousel QA (FINISH)
 All 
-    2) LOGIN PART NAME
+    2) LOGIN PART NAME  (FINISH)
 QUESTION 
-    3) each question part
-    4)  input for question
-    5) Rules
+    3)  each question part (FINISH)
+    4)  input for question (FINISH)
+    5)  Rules (FINISH)
+    6) TIMER
+    7) WRONG CORRECT
+    8) DELETEPOINTS 
+    9) IF card is open to make another css
 INFO
-    6) Read about useRef
+    10) Read about useRef

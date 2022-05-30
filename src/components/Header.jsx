@@ -1,7 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Grid } from "@mui/material";
+import { useSelector } from "react-redux";
+
 export default function Header() {
+  let score = useSelector((state) => state.score);
+  let loginName = useSelector((state) => state.login);
+
   return (
     <>
       <Grid
@@ -33,11 +38,15 @@ export default function Header() {
             justifyContent: "space-around",
           }}
         >
-          <Link to="/play" className="link-part">
-            <button className="btn-header">
-              <h4>Play</h4>
-            </button>
-          </Link>
+          {loginName ? (
+            <Link to="/play" className="link-part">
+              <button className="btn-header">
+                <h4>Play</h4>
+              </button>
+            </Link>
+          ) : (
+            <Link to="/"></Link>
+          )}
           <Link to="/statistics" className="link-part">
             <button className="btn-header">
               <h4>Statistics</h4>
@@ -48,6 +57,9 @@ export default function Header() {
               <h4>Info</h4>
             </button>
           </Link>
+          <div className="link-part">
+            <h3 style={{ color: "#faeb56" }}>{score}</h3>
+          </div>
         </Grid>
       </Grid>
     </>
