@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Dialog, DialogContent } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../redux/actions/actions";
 import { debounce } from "lodash";
 
@@ -10,12 +10,14 @@ const Questions = ({ el }) => {
   const [selectedElement, setSelectedElement] = useState([]);
   const [answer, setAnswer] = useState("");
   const [isRight, setIsRight] = useState("");
+  const [active, setActive] = useState(false);
 
   // Timer Part
   const [quizTime, setQuizTime] = useState();
   const handleClickOpen = (item) => {
     // setQuizTime(60);
     // startTimer(60);
+    setActive("i change style");
     setOpen(true);
     setSelectedElement(item);
   };
@@ -32,49 +34,21 @@ const Questions = ({ el }) => {
   const handleChangeInput = debounce((e) => {
     setAnswer(e.target.value);
   }, 1000);
-  // function checkAnswer() {
-  //   if (answer === selectedElement.answer) {
-  //     setIsRight("Right Answer");
-  //   } else {
-  //     setIsRight("Wrong Answer");
-  //   }
-  // }
-  // let checkAnswer = answer === selectedElement.answer;
+
   function checkAnswer() {
     if (answer === selectedElement.answer) {
-      // console.log("right");
       setIsRight("Right Answer");
       dispatch({ type: actions.ADDSCORE, payload: selectedElement.value });
-      // let finalScore = (score += selectedElement.value);
-      // setScore(finalScore);
     } else {
-      // console.log("wrong");
       setIsRight("Wrong Answer");
       dispatch({ type: actions.DELETESCORE, payload: selectedElement.value });
-      // let finalScore = (score -= selectedElement.value);
-      // setScore(finalScore);
     }
-    // return answer;
   }
-  // if (checkAnswer) {
-  //   setScore(selectedElement.value);
-  // }
+
   useEffect(() => {
     dispatch({ type: actions.ANSWERCHECK, payload: isRight });
   }, [isRight]);
 
-  // let counter;
-  // function startTimer(time) {
-  //   counter = setInterval(timer, 1000);
-  //   function timer() {
-  //     setQuizTime(time);
-  //     time--;
-  //     if (time === 0) {
-  //       setOpen(false);
-  //       dispatch({ type: actions.ADDPOINTS, payload: isRight });
-  //     }
-  //   }
-  // }
   return (
     <>
       {el[1].map((item) => (

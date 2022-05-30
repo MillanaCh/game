@@ -32,6 +32,7 @@ export default function Play() {
     if (el[1].length === 5) filteredData.push(el);
     return el;
   });
+  console.log(filteredData)
 
   useEffect(() => {
     allQuestions();
@@ -64,8 +65,9 @@ export default function Play() {
                 >
                   <h3 className="bottomAnswer">{answer}</h3>
                 </Card>
-                <h3 style={{ margin: "40px  0 0 40px" }}>
-                  The right answer is: {rightAnswer?.map((el) => el.answer)}
+                <h3 className="rightAnswer">
+                  The right answer is:
+                  <span>{rightAnswer?.map((el) => el.answer)}</span>
                 </h3>
               </Grid>
             ) : (
