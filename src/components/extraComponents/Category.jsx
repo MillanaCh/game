@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Box, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Questions from "./Questions";
+import * as actions from "../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 const Item = styled(Paper)(() => ({
   backgroundColor: "#0d597f",
@@ -15,6 +17,10 @@ const Item = styled(Paper)(() => ({
 }));
 
 const Categories = ({ el }) => {
+  let dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: actions.ADDFILTEREDDATA, payload: el[1] });
+  }, []);
   return (
     <>
       <Box
@@ -30,7 +36,7 @@ const Categories = ({ el }) => {
               <Grid item sx={{ minWidth: "300px" }}>
                 <p className="category-name">{el[0].toUpperCase()}</p>
               </Grid>
-              <Questions el={el}/>
+              <Questions el={el} />
             </Item>
           </Grid>
         </Grid>

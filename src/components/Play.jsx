@@ -32,7 +32,6 @@ export default function Play() {
     if (el[1].length === 5) filteredData.push(el);
     return el;
   });
-  console.log(filteredData)
 
   useEffect(() => {
     allQuestions();

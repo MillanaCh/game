@@ -10,16 +10,17 @@ const Questions = ({ el }) => {
   const [selectedElement, setSelectedElement] = useState([]);
   const [answer, setAnswer] = useState("");
   const [isRight, setIsRight] = useState("");
-  const [active, setActive] = useState(false);
-
+  let filteredData = useSelector((state) => state.filteredData);
+  // console.log(filteredData)
   // Timer Part
   const [quizTime, setQuizTime] = useState();
   const handleClickOpen = (item) => {
     // setQuizTime(60);
     // startTimer(60);
-    setActive("i change style");
+    // setActive("i change style");
     setOpen(true);
     setSelectedElement(item);
+    dispatch({ type: actions.MODIFYFILTEREDDATA, payload: item.id });
   };
   const handleClose = () => {
     setOpen(false);
@@ -51,7 +52,8 @@ const Questions = ({ el }) => {
 
   return (
     <>
-      {el[1].map((item) => (
+      {/* el[1] */}
+      {filteredData.map((item) => (
         <button
           className="valueBtn"
           onClick={() => handleClickOpen(item)}
