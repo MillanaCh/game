@@ -1,11 +1,11 @@
 import * as actions from "./actions/actions";
 
-const rightAnswer = (state = null, action) => {
+const chhosenAnswer = (state = null, action) => {
   switch (action.type) {
-    case actions.RIGHTANSWER:
+    case actions.CHOOSENITEM:
       return [action.payload];
     default:
       return state;
   }
 };
-export default rightAnswer;
+export default chhosenAnswer;

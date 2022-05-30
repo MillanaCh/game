@@ -1,6 +1,6 @@
 export const LOGIN_NAME = "LOGIN_NAME";
-export const ADDPOINTS = "ADDPOINTS"
-export const RIGHTANSWER = "RIGHTANSWER"
+export const ANSWERCHECK = "ANSWERCHECK"
+export const CHOOSENITEM = "CHOOSENITEM"
 export const ADDSCORE = "ADDSCORE"
 export const DELETESCORE = "DELETESCORE"
 

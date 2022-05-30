@@ -4,12 +4,13 @@ import { useState } from "react";
 import Categories from "./extraComponents/Category";
 import { useSelector } from "react-redux";
 import { Grid, Card } from "@mui/material";
+import { Link } from "react-router-dom";
 // import { v4 as uuidv4 } from "uuid";
 
 export default function Play() {
   let data = useSelector((state) => [state.data]);
   let answer = useSelector((state) => state.answerCheck);
-  let rightAnswer = useSelector((state) => state.rightAnswer);
+  let rightAnswer = useSelector((state) => state.choosenItem);
   const [questions, setAllQuestions] = useState({});
 
   // let mapRightAnswer = rightAnswer?.map((el) => el.answer);
@@ -35,6 +36,7 @@ export default function Play() {
   useEffect(() => {
     allQuestions();
   }, []);
+
   return (
     <>
       <Header />
@@ -46,37 +48,59 @@ export default function Play() {
             </Grid>
           </>
         ))}
-        {answer == "Wrong Answer" ? (
-          <Grid container spacing={2}>
-            <Card
-              sx={{
-                width: "20%",
-                height: "60px",
-                margin: "24px 0 13px 21px",
-                color: "white",
-                backgroundColor: "#cb1717",
-              }}
-            >
-              <h3 className="bottomAnswer">{answer}</h3>
-            </Card>
-            <h3 style={{ margin: "35px  0 0 40px" }}>
-              The right answer is: {rightAnswer?.map((el) => el.answer)}
-            </h3>
+
+        <Grid container spacing={2}>
+          <Grid item xs={10}>
+            {answer == "Wrong Answer" ? (
+              <Grid container spacing={2}>
+                <Card
+                  sx={{
+                    width: "20%",
+                    height: "60px",
+                    margin: "24px 0 13px 21px",
+                    color: "white",
+                    backgroundColor: "#cb1717",
+                  }}
+                >
+                  <h3 className="bottomAnswer">{answer}</h3>
+                </Card>
+                <h3 style={{ margin: "40px  0 0 40px" }}>
+                  The right answer is: {rightAnswer?.map((el) => el.answer)}
+                </h3>
+              </Grid>
+            ) : (
+              <>
+                <Card
+                  sx={{
+                    width: "20%",
+                    height: "60px",
+                    margin: "10px 3px",
+                    color: "white",
+                    backgroundColor: "#042c42",
+                  }}
+                >
+                  <h3 className="bottomAnswer">{answer}</h3>
+                </Card>
+              </>
+            )}
           </Grid>
-        ) : (
-          <Card
-            sx={{
-              width: "20%",
-              height: "60px",
-              margin: "10px 3px",
-              color: "white",
-              backgroundColor: "#042c42",
-            }}
-          >
-            <h3 className="bottomAnswer">{answer}</h3>
-          </Card>
-        )}
-        {/* <h3>Finish</h3> */}
+          <Grid item xs={2}>
+            <Link to="/play">
+              <button
+                style={{
+                  margin: "10px 0 0 100px",
+                  color: "black",
+                  backgroundColor: "white",
+                  border: "none",
+                  padding: "15px",
+                  borderRadius: "7px",
+                }}
+              >
+                <h3>Finish</h3>
+              </button>
+            </Link>
+          </Grid>
+        </Grid>
       </Card>
     </>
   );

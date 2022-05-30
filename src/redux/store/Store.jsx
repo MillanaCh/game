@@ -3,13 +3,13 @@ import questionsSlice from "../QuestionsSlice";
 import loginReducer from "../LoginSlice";
 import answerReducer from "../AnswerSlice";
 import scoreReducer from "../scoreSlice";
-import rightAnswer from "../RightAnswer";
+import chhosenAnswer from "../ChoosenItem";
 const store = configureStore({
   reducer: {
     data: questionsSlice.reducer,
     login: loginReducer,
     answerCheck: answerReducer,
-    rightAnswer: rightAnswer,
+    choosenItem: chhosenAnswer,
     score: scoreReducer,
   },
 });

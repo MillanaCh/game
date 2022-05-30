@@ -58,7 +58,7 @@ export default function Header() {
             </button>
           </Link>
           <div className="link-part">
-            <h3 style={{ color: "#faeb56" }}>{score}</h3>
+            <h3 style={{ color: "#faeb56", fontSize: "20px" }}>{score}</h3>
           </div>
         </Grid>
       </Grid>

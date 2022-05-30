@@ -18,21 +18,20 @@ const Questions = ({ el }) => {
     // startTimer(60);
     setOpen(true);
     setSelectedElement(item);
-    dispatch({ type: actions.RIGHTANSWER, payload: item });
   };
   const handleClose = () => {
     setOpen(false);
   };
   const handleCheck = (e) => {
     e.preventDefault();
+    dispatch({ type: actions.CHOOSENITEM, payload: selectedElement });
     setOpen(false);
-    dispatch({ type: actions.ADDPOINTS, payload: isRight });
+    checkAnswer();
   };
 
   const handleChangeInput = debounce((e) => {
     setAnswer(e.target.value);
-  }, 2000);
-
+  }, 1000);
   // function checkAnswer() {
   //   if (answer === selectedElement.answer) {
   //     setIsRight("Right Answer");
@@ -43,24 +42,26 @@ const Questions = ({ el }) => {
   // let checkAnswer = answer === selectedElement.answer;
   function checkAnswer() {
     if (answer === selectedElement.answer) {
+      // console.log("right");
       setIsRight("Right Answer");
       dispatch({ type: actions.ADDSCORE, payload: selectedElement.value });
       // let finalScore = (score += selectedElement.value);
       // setScore(finalScore);
     } else {
+      // console.log("wrong");
       setIsRight("Wrong Answer");
       dispatch({ type: actions.DELETESCORE, payload: selectedElement.value });
       // let finalScore = (score -= selectedElement.value);
       // setScore(finalScore);
     }
-    return answer;
+    // return answer;
   }
   // if (checkAnswer) {
   //   setScore(selectedElement.value);
   // }
   useEffect(() => {
-    checkAnswer();
-  }, [open]);
+    dispatch({ type: actions.ANSWERCHECK, payload: isRight });
+  }, [isRight]);
 
   // let counter;
   // function startTimer(time) {

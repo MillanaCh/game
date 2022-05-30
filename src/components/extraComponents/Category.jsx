@@ -30,7 +30,7 @@ const Categories = ({ el }) => {
               <Grid item sx={{ minWidth: "300px" }}>
                 <p className="category-name">{el[0].toUpperCase()}</p>
               </Grid>
-              <Questions el={el} />
+              <Questions el={el}/>
             </Item>
           </Grid>
         </Grid>
