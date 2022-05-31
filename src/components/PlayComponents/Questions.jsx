@@ -55,15 +55,14 @@ const Questions = ({ el, setIsRight }) => {
       }
       if (seconds === 0) {
         clearInterval(myInterval);
-        setOpen(false);
-        // dispatch({ type: actions.CHOOSENITEM, payload: selectedElement });
+        handleClose();
       }
     }, 1000);
 
     return () => {
       clearInterval(myInterval);
     };
-  });
+  }, [seconds]);
 
   return (
     <>
