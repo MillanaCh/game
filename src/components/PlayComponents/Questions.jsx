@@ -47,25 +47,26 @@ const Questions = ({ el, setIsRight }) => {
     }
   }
   // This PART
-  // useEffect(() => {
-  //   let myInterval = setTimeout(() => {
-  //     if (seconds === 0) {
-  //       clearInterval(myInterval);
-  //       console.log("zero");
-  //     } else {
-  //       setSeconds(seconds - 1);
-  //     }
-  //   }, 1000);
-  //   return () => {
-  //     clearInterval(myInterval);
-  //   };
-  // }, [seconds]);
-
   useEffect(() => {
-    const timer =
-      seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
-    return () => clearInterval(timer);
+    let myInterval = setTimeout(() => {
+      if (seconds === 0) {
+        clearInterval(myInterval);
+        console.log("zero"); ////make 2 times
+      } else {
+        setSeconds(seconds - 1);
+      }
+    }, 1000);
+    return () => {
+      clearInterval(myInterval);
+    };
   }, [seconds]);
+
+  // Second way
+  // useEffect(() => {
+  //   const timer =
+  //     seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
+  //   return () => clearInterval(timer);
+  // }, [seconds]);
 
   return (
     <>
