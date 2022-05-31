@@ -27,6 +27,7 @@ const questionsSlice = createSlice({
     [callTheApi.rejected]: (state, action) => {
       return [];
     },
+    
   },
 });
 

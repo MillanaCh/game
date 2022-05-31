@@ -95,11 +95,3 @@ export default function Info() {
     </>
   );
 }
-// WHAT IS THE JEOPARDY! ANYTIME TEST?
-//The Jeopardy! Anytime Test is the first step for anyone who wants to compete on Jeopardy! Passing the 50-question test is the first round of qualification to getting on the show. Plus, it’s a lot of fun!
-
-//I’VE SUBMITTED AN ANYTIME TEST IN THE LAST 12 MONTHS. CAN I STILL TAKE THE TEST ON JEOPARDAY!?
-//Normally, you are able to submit one Anytime Test per one-year period. But in celebration of JeoparDAY!, you will be allowed to take the test on March 30 regardless of when you last took the test. Taking the test on JeoparDAY! will not count towards the one year cycle of eligibility. For example, if you took the test on December 1, 2021 and then again on March 30, 2022 (JeoparDAY!), the next time you would be able to take the test would be on December 1, 2022. . It’s an extra chance to give it your best shot!
-
-//AM I ELIGIBLE TO TAKE THE ANYTIME TEST ON JEOPARDAY! IF I HAVE STARTED THE JEOPARDY! CONTESTANT INTERVIEW PROCESS?
-//You will be allowed to take the Anytime Test on JeoparDAY!...for fun! However, your score will not affect your eligibility for getting on the show.

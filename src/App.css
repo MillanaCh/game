@@ -7,15 +7,33 @@
   margin: 0;
   box-sizing: border-box;
 }
+/* make root */
+/* Header component */
 .link-part {
   text-decoration: none;
   min-width: 150px;
   color: rgb(212, 216, 219);
   font-size: 15px;
 }
-.link-part:hover {
+.btn-header {
+  width: 80px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  border: 1px solid #fff;
   color: white;
+  border-radius: 5px;
 }
+.btn-header:hover {
+  width: 80px;
+  height: 30px;
+  border: none;
+  background-color: #fbec56;
+  color: black;
+  border-radius: 5px;
+}
+
+/* Main Page */
 .background-logo {
   background-image: url("../src/images/img.png");
   width: 100%;
@@ -53,66 +71,6 @@
   color: white;
   border-radius: 4px;
 }
-.valueBtn {
-  width: 180px;
-  text-align: center;
-  height: 45px;
-  background-color: #2584b3;
-  color: white;
-  font-size: 15px;
-  font-family: "Fredoka One", cursive;
-  border-radius: 5px;
-  border: none;
-}
-/* Try */
-.value-toggle {
-  visibility: hidden;
-  width: 180px;
-  height: 45px;
-  background-color: #2584b3;
-  color: white;
-  font-size: 15px;
-  border-radius: 5px;
-}
-.valueUsed {
-  width: 180px;
-  text-align: center;
-  height: 45px;
-  background-color: #faeb56;
-  color: white;
-  font-size: 15px;
-  font-family: "Fredoka One", cursive;
-  border-radius: 5px;
-  border: none;
-}
-.style-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: whitesmoke;
-}
-.bottomAnswer {
-  text-align: center;
-  margin-top: 15px;
-}
-.btn-header {
-  width: 80px;
-  height: 30px;
-  border: none;
-  background-color: #fbec56;
-  color: black;
-  border-radius: 5px;
-}
-.rightAnswer {
-  margin: 40px 0 0 40px;
-  /* font-family: "Fredoka One", cursive; */
-  /* color: #ca1817; */
-  color: white;
-}
-.rightAnswer span {
-  font-size: 20px;
-  color: #faeb56;
-}
 /* Start page */
 .btn-start {
   width: 85%;
@@ -136,7 +94,42 @@
   margin: 20px 0 0 0;
   line-height: 40px;
 }
-/* Dialog Part */
+
+/* Play Part */
+.rightAnswer {
+  margin: 40px 0 0 40px;
+  color: white;
+}
+.rightAnswer span {
+  font-size: 20px;
+  color: #faeb56;
+}
+.bottomAnswer {
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Questions - Play*/
+.valueBtn {
+  width: 180px;
+  text-align: center;
+  height: 45px;
+  background-color: #2584b3;
+  color: white;
+  font-size: 15px;
+  font-family: "Fredoka One", cursive;
+  border-radius: 5px;
+  border: none;
+}
+.value-toggle {
+  visibility: hidden;
+  width: 180px;
+  height: 45px;
+  background-color: #2584b3;
+  color: white;
+  font-size: 15px;
+  border-radius: 5px;
+}
 .toolbar {
   display: flex;
   justify-content: space-around;
@@ -174,7 +167,6 @@
   justify-content: space-around;
   font-family: "Josefin Sans", sans-serif;
 }
-
 .timeDisplay h3 {
   color: #0d597f;
   margin-top: 4px;
@@ -188,9 +180,26 @@
   font-size: 20px;
   background-color: red;
 }
-/* Category Style */
+/* Category Play */
 .category-name {
   font-family: "Fredoka One", cursive;
+}
+/* Statistic Part */
+.statistic-part {
+  width: 90%;
+  padding: 5% 0 0 35px;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.checked {
+  background-color: #2584b3;
+}
+.statistic-part td,
+.statistic-part th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
 }
 /* About part */
 .infoText {
@@ -243,22 +252,4 @@
 /* Background Change */
 .bg-salmon {
   background-color: #fbec56;
-}
-/* Statistic Part */
-.statistic-part {
-  width: 90%;
-  padding: 5% 0 0 35px;
-  color: white;
-  font-family: "Josefin Sans", sans-serif;
-}
-
-.checked {
-  background-color: #2584b3;
-}
-.statistic-part td,
-.statistic-part th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-
 }

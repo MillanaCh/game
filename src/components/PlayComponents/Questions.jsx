@@ -110,14 +110,3 @@ const Questions = ({ el, setIsRight }) => {
 };
 export default Questions;
 
-//  let counter;
-// function startTimer(time) {
-//   counter = setInterval(timer, 1000);
-//   function timer() {
-//     setQuizTime(time);
-//     time--;
-//     if (time === 0) {
-//       setOpen(false);
-//     }
-//   }
-// }

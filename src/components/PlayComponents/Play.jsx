@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "../Header";
 import { useState } from "react";
 import Categories from "./Category";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Grid, Card } from "@mui/material";
 import { Link } from "react-router-dom";
 
