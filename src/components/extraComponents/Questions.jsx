@@ -1,62 +1,70 @@
 import React, { useEffect, useState } from "react";
 import { Dialog, DialogContent } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as actions from "../../redux/actions/actions";
 import { debounce } from "lodash";
 
-const Questions = ({ el }) => {
+const Questions = ({ el, setIsRight }) => {
   let dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [selectedElement, setSelectedElement] = useState([]);
   const [answer, setAnswer] = useState("");
-  const [isRight, setIsRight] = useState("");
-  let filteredData = useSelector((state) => state.filteredData);
-  // console.log(filteredData)
   // Timer Part
   const [quizTime, setQuizTime] = useState();
-  const handleClickOpen = (item) => {
-    // setQuizTime(60);
-    // startTimer(60);
-    // setActive("i change style");
+  const handleClickOpen = (event, item) => {
+    event.target.className = "value-toggle";
+    setQuizTime(20);
+    startTimer(20);
     setOpen(true);
     setSelectedElement(item);
-    dispatch({ type: actions.MODIFYFILTEREDDATA, payload: item.id });
   };
   const handleClose = () => {
     setOpen(false);
+    dispatch({ type: actions.CHOOSENITEM, payload: selectedElement });
+    checkAnswer();
   };
+
   const handleCheck = (e) => {
     e.preventDefault();
-    dispatch({ type: actions.CHOOSENITEM, payload: selectedElement });
     setOpen(false);
+    dispatch({ type: actions.CHOOSENITEM, payload: selectedElement });
     checkAnswer();
   };
 
   const handleChangeInput = debounce((e) => {
     setAnswer(e.target.value);
-  }, 1000);
+  }, 500);
 
   function checkAnswer() {
-    if (answer === selectedElement.answer) {
+    if (answer.toLowerCase() === selectedElement.answer.toLowerCase()) {
       setIsRight("Right Answer");
       dispatch({ type: actions.ADDSCORE, payload: selectedElement.value });
+      dispatch({ type: actions.ANSWERS, payload: "RightAnswer" });
     } else {
       setIsRight("Wrong Answer");
       dispatch({ type: actions.DELETESCORE, payload: selectedElement.value });
+      dispatch({ type: actions.ANSWERS, payload: "WrongAnswer" });
     }
   }
 
-  useEffect(() => {
-    dispatch({ type: actions.ANSWERCHECK, payload: isRight });
-  }, [isRight]);
+  let counter;
+  function startTimer(time) {
+    counter = setInterval(timer, 1000);
+    function timer() {
+      setQuizTime(time);
+      time--;
+      if (time === 0) {
+        setOpen(false);
+      }
+    }
+  }
 
   return (
     <>
-      {/* el[1] */}
-      {filteredData.map((item) => (
+      {el[1].map((item) => (
         <button
           className="valueBtn"
-          onClick={() => handleClickOpen(item)}
+          onClick={(event) => handleClickOpen(event, item)}
           key={item.id}
         >
           {item.value}
@@ -86,7 +94,7 @@ const Questions = ({ el }) => {
             </form>
           </DialogContent>
           <div className="timeDisplay">
-            <h3>
+            <h3 style={{ padding: "10px" }}>
               Time Left: <span>{quizTime}</span>
             </h3>
           </div>

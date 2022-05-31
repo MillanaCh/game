@@ -2,18 +2,18 @@ import React, { useEffect } from "react";
 import Header from "./Header";
 import { useState } from "react";
 import Categories from "./extraComponents/Category";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Grid, Card } from "@mui/material";
 import { Link } from "react-router-dom";
-// import { v4 as uuidv4 } from "uuid";
 
 export default function Play() {
   let data = useSelector((state) => [state.data]);
-  let answer = useSelector((state) => state.answerCheck);
   let rightAnswer = useSelector((state) => state.choosenItem);
+
+  const [isRight, setIsRight] = useState("");
+
   const [questions, setAllQuestions] = useState({});
 
-  // let mapRightAnswer = rightAnswer?.map((el) => el.answer);
   function allQuestions() {
     const allquestions = data[0].reduce((acc, question) => {
       if (question.category.title in acc && question.value) {
@@ -44,14 +44,14 @@ export default function Play() {
         {filteredData.map((el, index) => (
           <>
             <Grid item xs={12}>
-              <Categories el={el} />
+              <Categories el={el} setIsRight={setIsRight} />
             </Grid>
           </>
         ))}
 
         <Grid container spacing={2}>
           <Grid item xs={10}>
-            {answer == "Wrong Answer" ? (
+            {isRight == "Wrong Answer" ? (
               <Grid container spacing={2}>
                 <Card
                   sx={{
@@ -62,7 +62,7 @@ export default function Play() {
                     backgroundColor: "#cb1717",
                   }}
                 >
-                  <h3 className="bottomAnswer">{answer}</h3>
+                  <h3 className="bottomAnswer">{isRight}</h3>
                 </Card>
                 <h3 className="rightAnswer">
                   The right answer is:
@@ -80,13 +80,13 @@ export default function Play() {
                     backgroundColor: "#042c42",
                   }}
                 >
-                  <h3 className="bottomAnswer">{answer}</h3>
+                  <h3 className="bottomAnswer">{isRight}</h3>
                 </Card>
               </>
             )}
           </Grid>
           <Grid item xs={2}>
-            <Link to="/play">
+            <Link to="/statistics">
               <button
                 style={{
                   margin: "10px 0 0 100px",

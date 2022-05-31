@@ -1,9 +1,11 @@
 import * as actions from "./actions/actions";
 
-const answerReducer = (state = null, action) => {
+const answerReducer = (state = [], action) => {
   switch (action.type) {
-    case actions.ANSWERCHECK:
-      return action.payload;
+    case actions.ANSWERS:
+      return [...state, action.payload];
+    case actions.UPDATEANSWERS:
+      return state = [];
     default:
       return state;
   }

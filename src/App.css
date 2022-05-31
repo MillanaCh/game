@@ -64,6 +64,16 @@
   border-radius: 5px;
   border: none;
 }
+/* Try */
+.value-toggle {
+  visibility: hidden;
+  width: 180px;
+  height: 45px;
+  background-color: #2584b3;
+  color: white;
+  font-size: 15px;
+  border-radius: 5px;
+}
 .valueUsed {
   width: 180px;
   text-align: center;
@@ -99,7 +109,7 @@
   /* color: #ca1817; */
   color: white;
 }
-.rightAnswer span{
+.rightAnswer span {
   font-size: 20px;
   color: #faeb56;
 }
@@ -231,6 +241,24 @@
   border-radius: 4px;
 }
 /* Background Change */
-.bg-salmon{
+.bg-salmon {
   background-color: #fbec56;
+}
+/* Statistic Part */
+.statistic-part {
+  width: 90%;
+  padding: 5% 0 0 35px;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.checked {
+  background-color: #2584b3;
+}
+.statistic-part td,
+.statistic-part th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+
 }

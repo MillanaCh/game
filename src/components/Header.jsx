@@ -1,11 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Grid } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "../redux/actions/actions";
 
 export default function Header() {
+  let dispatch = useDispatch();
+
   let score = useSelector((state) => state.score);
   let loginName = useSelector((state) => state.login);
+  const finishGame = () => {
+    dispatch({ type: actions.UPDATESCORE });
+    dispatch({ type: actions.UPDATEANSWERS });
+  };
 
   return (
     <>
@@ -40,7 +47,7 @@ export default function Header() {
         >
           {loginName ? (
             <Link to="/play" className="link-part">
-              <button className="btn-header">
+              <button className="btn-header" onClick={() => finishGame()}>
                 <h4>Play</h4>
               </button>
             </Link>
