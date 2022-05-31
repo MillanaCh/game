@@ -14,8 +14,7 @@ const Questions = ({ el, setIsRight }) => {
   const [seconds, setSeconds] = useState(null);
   const handleClickOpen = (event, item) => {
     event.target.className = "value-toggle";
-
-    setSeconds(20);
+    setSeconds(60);
     setOpen(true);
     setSelectedElement(item);
   };
@@ -47,21 +46,25 @@ const Questions = ({ el, setIsRight }) => {
       dispatch({ type: actions.ANSWERS, payload: "WrongAnswer" });
     }
   }
+  // This PART
+  // useEffect(() => {
+  //   let myInterval = setTimeout(() => {
+  //     if (seconds === 0) {
+  //       clearInterval(myInterval);
+  //       console.log("zero");
+  //     } else {
+  //       setSeconds(seconds - 1);
+  //     }
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(myInterval);
+  //   };
+  // }, [seconds]);
 
   useEffect(() => {
-    let myInterval = setInterval(() => {
-      if (seconds > 0) {
-        setSeconds(seconds - 1);
-      }
-      if (seconds === 0) {
-        clearInterval(myInterval);
-        handleClose();
-      }
-    }, 1000);
-
-    return () => {
-      clearInterval(myInterval);
-    };
+    const timer =
+      seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
+    return () => clearInterval(timer);
   }, [seconds]);
 
   return (
@@ -109,4 +112,3 @@ const Questions = ({ el, setIsRight }) => {
   );
 };
 export default Questions;
-
