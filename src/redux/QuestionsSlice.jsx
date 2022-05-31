@@ -2,6 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = [];
+
 // fetch Data
 export const callTheApi = createAsyncThunk("data/fetchApi", async () => {
   try {
@@ -21,13 +22,11 @@ const questionsSlice = createSlice({
       return [];
     },
     [callTheApi.fulfilled]: (state, action) => {
-      //action and payload is already created in react toolkit
       return action.payload;
     },
     [callTheApi.rejected]: (state, action) => {
       return [];
     },
-    
   },
 });
 

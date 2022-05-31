@@ -1,15 +1,4 @@
 import * as actions from "./actions/actions";
-// import { createSlice } from "@reduxjs/toolkit";
-
-// const initialState = "";
-
-// const loginSlice = createSlice({
-//   name: "login",
-//   initialState,
-//   reducers: {
-//     loginName:
-//   },
-// });
 
 const loginReducer = (state = "", action) => {
   switch (action.type) {

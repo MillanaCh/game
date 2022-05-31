@@ -12,6 +12,5 @@ const store = configureStore({
     choosenItem: chhosenAnswer,
     score: scoreReducer,
   },
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 export default store;
