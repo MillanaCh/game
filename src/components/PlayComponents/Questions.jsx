@@ -9,12 +9,13 @@ const Questions = ({ el, setIsRight }) => {
   const [open, setOpen] = useState(false);
   const [selectedElement, setSelectedElement] = useState([]);
   const [answer, setAnswer] = useState("");
+
   // Timer Part
-  const [quizTime, setQuizTime] = useState();
+  const [seconds, setSeconds] = useState(null);
   const handleClickOpen = (event, item) => {
     event.target.className = "value-toggle";
-    setQuizTime(20);
-    startTimer(20);
+
+    setSeconds(20);
     setOpen(true);
     setSelectedElement(item);
   };
@@ -47,17 +48,22 @@ const Questions = ({ el, setIsRight }) => {
     }
   }
 
-  let counter;
-  function startTimer(time) {
-    counter = setInterval(timer, 1000);
-    function timer() {
-      setQuizTime(time);
-      time--;
-      if (time === 0) {
-        setOpen(false);
+  useEffect(() => {
+    let myInterval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
       }
-    }
-  }
+      if (seconds === 0) {
+        clearInterval(myInterval);
+        setOpen(false);
+        // dispatch({ type: actions.CHOOSENITEM, payload: selectedElement });
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(myInterval);
+    };
+  });
 
   return (
     <>
@@ -95,7 +101,7 @@ const Questions = ({ el, setIsRight }) => {
           </DialogContent>
           <div className="timeDisplay">
             <h3 style={{ padding: "10px" }}>
-              Time Left: <span>{quizTime}</span>
+              Time Left: <span>{seconds}</span>
             </h3>
           </div>
         </Dialog>
@@ -104,3 +110,15 @@ const Questions = ({ el, setIsRight }) => {
   );
 };
 export default Questions;
+
+//  let counter;
+// function startTimer(time) {
+//   counter = setInterval(timer, 1000);
+//   function timer() {
+//     setQuizTime(time);
+//     time--;
+//     if (time === 0) {
+//       setOpen(false);
+//     }
+//   }
+// }

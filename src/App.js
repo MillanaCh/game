@@ -1,13 +1,13 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import MainPage from "./components/MainPage";
-import Play from "./components/Play";
-import Statistics from "./components/Statistics";
+import MainPage from "./components/pages/MainPage";
+import Play from "./components/PlayComponents/Play";
+import Statistics from "./components/pages/Statistics";
 import { callTheApi } from "./redux/QuestionsSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import Info from "./components/Info";
-import Start from "./components/Start";
+import Info from "./components/pages/Info";
+import Start from "./components/pages/Start";
 
 function App() {
   const dispatch = useDispatch();

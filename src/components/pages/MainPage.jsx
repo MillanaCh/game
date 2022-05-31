@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Header from "./Header";
+import Header from "../Header";
 import { useDispatch } from "react-redux";
-import * as actions from "../redux/actions/actions";
+import * as actions from "../../redux/actions/actions";
 import { Link, Navigate } from "react-router-dom";
 export default function MainPage() {
   let dispatch = useDispatch();
