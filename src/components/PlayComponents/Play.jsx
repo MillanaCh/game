@@ -42,11 +42,9 @@ export default function Play() {
       <Header />
       <Card sx={{ backgroundColor: "#136998", borderRadius: "0" }}>
         {filteredData.map((el, index) => (
-          <>
-            <Grid item xs={12}>
-              <Categories el={el} setIsRight={setIsRight} />
-            </Grid>
-          </>
+          <Grid item xs={12} key={index}>
+            <Categories el={el} setIsRight={setIsRight} />
+          </Grid>
         ))}
 
         <Grid container spacing={2}>

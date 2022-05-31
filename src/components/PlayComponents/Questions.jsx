@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent } from "@mui/material";
 import { useDispatch } from "react-redux";
 import * as actions from "../../redux/actions/actions";
@@ -9,23 +9,25 @@ const Questions = ({ el, setIsRight }) => {
   const [open, setOpen] = useState(false);
   const [selectedElement, setSelectedElement] = useState([]);
   const [answer, setAnswer] = useState("");
+  let interval = useRef();
 
-  // Timer Part
-  const [seconds, setSeconds] = useState(null);
+  const [seconds, setSeconds] = useState(0);
   const handleClickOpen = (event, item) => {
     event.target.className = "value-toggle";
-    setSeconds(60);
+    setSeconds(20);
     setOpen(true);
     setSelectedElement(item);
   };
   const handleClose = () => {
     setOpen(false);
+    clearInterval(interval);
     dispatch({ type: actions.CHOOSENITEM, payload: selectedElement });
     checkAnswer();
   };
 
   const handleCheck = (e) => {
     e.preventDefault();
+    clearInterval(interval);
     setOpen(false);
     dispatch({ type: actions.CHOOSENITEM, payload: selectedElement });
     checkAnswer();
@@ -46,35 +48,29 @@ const Questions = ({ el, setIsRight }) => {
       dispatch({ type: actions.ANSWERS, payload: "WrongAnswer" });
     }
   }
-  // This PART
+  // Timer Part
+
   useEffect(() => {
-    let myInterval = setTimeout(() => {
+    interval = setInterval(() => {
       if (seconds === 0) {
-        clearInterval(myInterval);
-        console.log("zero"); ////make 2 times
+        clearInterval(interval);
+        handleClose();
       } else {
         setSeconds(seconds - 1);
       }
     }, 1000);
     return () => {
-      clearInterval(myInterval);
+      clearInterval(interval);
     };
   }, [seconds]);
 
-  // Second way
-  // useEffect(() => {
-  //   const timer =
-  //     seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
-  //   return () => clearInterval(timer);
-  // }, [seconds]);
-
   return (
     <>
-      {el[1].map((item) => (
+      {el[1].map((item, index) => (
         <button
           className="valueBtn"
           onClick={(event) => handleClickOpen(event, item)}
-          key={item.id}
+          key={index}
         >
           {item.value}
         </button>

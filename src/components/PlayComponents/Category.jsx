@@ -27,7 +27,7 @@ const Categories = ({ el, setIsRight }) => {
         <Grid container spacing={2}>
           <Grid item xs={12} sx={{ margin: "4px" }}>
             <Item>
-              <Grid item sx={{ minWidth: "300px" }}>
+              <Grid item xs={4} md={2}>
                 <p className="category-name">{el[0].toUpperCase()}</p>
               </Grid>
               <Questions el={el} setIsRight={setIsRight} />
