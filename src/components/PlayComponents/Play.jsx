@@ -11,7 +11,6 @@ export default function Play() {
   let rightAnswer = useSelector((state) => state.choosenItem);
 
   const [isRight, setIsRight] = useState("");
-
   const [questions, setAllQuestions] = useState({});
 
   function allQuestions() {

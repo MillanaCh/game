@@ -162,6 +162,10 @@
   margin: 0 20px 15px 0;
   font-size: medium;
 }
+/* Background Change */
+.bg-salmon {
+  background-color: #fbec56;
+}
 .timeDisplay {
   display: flex;
   justify-content: space-around;
@@ -249,13 +253,3 @@
   border: none;
   border-radius: 4px;
 }
-/* Background Change */
-.bg-salmon {
-  background-color: #fbec56;
-}
-
-/* @media only screen and (max-width: 1300px) {
-  body {
-    background-color: lightblue;
-  }
-} */

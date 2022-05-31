@@ -9,15 +9,18 @@ const Questions = ({ el, setIsRight }) => {
   const [open, setOpen] = useState(false);
   const [selectedElement, setSelectedElement] = useState([]);
   const [answer, setAnswer] = useState("");
+
   let interval = useRef();
 
   const [seconds, setSeconds] = useState(0);
+  
   const handleClickOpen = (event, item) => {
     event.target.className = "value-toggle";
     setSeconds(20);
     setOpen(true);
     setSelectedElement(item);
   };
+
   const handleClose = () => {
     setOpen(false);
     clearInterval(interval);
@@ -48,8 +51,8 @@ const Questions = ({ el, setIsRight }) => {
       dispatch({ type: actions.ANSWERS, payload: "WrongAnswer" });
     }
   }
-  // Timer Part
 
+  // Timer Part
   useEffect(() => {
     interval = setInterval(() => {
       if (seconds === 0) {
