@@ -10,10 +10,15 @@ export default function Header() {
   let score = useSelector((state) => state.score);
   let loginName = useSelector((state) => state.login);
   const finishGame = () => {
+    dispatch({ type: actions.UPDATENAME });
     dispatch({ type: actions.UPDATESCORE });
     dispatch({ type: actions.UPDATEANSWERS });
   };
 
+  const finishPlay = () => {
+    dispatch({ type: actions.UPDATESCORE });
+    dispatch({ type: actions.UPDATEANSWERS });
+  };
   return (
     <>
       <Grid
@@ -47,7 +52,7 @@ export default function Header() {
         >
           {loginName ? (
             <Link to="/play" className="link-part">
-              <button className="btn-header">
+              <button className="btn-header" onClick={() => finishPlay()}>
                 <h4>Play</h4>
               </button>
             </Link>

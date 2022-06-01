@@ -9,7 +9,24 @@ export default function MainPage() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch({ type: actions.LOGIN_NAME, payload: userName });
+    let testing = new RegExp(
+      /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{2,8}$/
+    );
+    let validEMail = testing.test(userName);
+
+    if (userName === "") {
+      setUserName(null);
+      alert("Name is required");
+    } else if (userName.length < 2 || userName.length > 10) {
+      setUserName(null);
+      alert("User name must have min-2, max-10");
+    } else if (validEMail) {
+      dispatch({ type: actions.LOGIN_NAME, payload: userName });
+    } else {
+      alert(
+        "User name should consist at least a symbol, upper and lower case letters, number"
+      );
+    }
   };
 
   const handleChange = (e) => {
@@ -22,7 +39,7 @@ export default function MainPage() {
       <div className="background-logo">
         <form className="container">
           <label style={{ color: "white" }}>
-            <b> Write your name!</b>
+            <b> Write your user name! </b>
           </label>
           <input
             placeholder="your name"

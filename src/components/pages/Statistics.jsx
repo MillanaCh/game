@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigate, Link } from "react-router-dom";
 import * as actions from "../../redux/actions/actions";
 export default function Statistics() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const loginName = useSelector((state) => state.login);
   const infoStat = useSelector((state) => state.answerCheck);
   const points = useSelector((state) => state.score);
@@ -52,6 +52,7 @@ export default function Statistics() {
   };
 
   const finishGame = () => {
+    dispatch({ type: actions.UPDATENAME });
     dispatch({ type: actions.UPDATESCORE });
     dispatch({ type: actions.UPDATEANSWERS });
   };

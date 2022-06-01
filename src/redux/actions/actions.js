@@ -7,5 +7,5 @@ export const MODIFYFILTEREDDATA = "MODIFYFILTEREDDATA";
 export const ANSWERS = "ANSWERS";
 export const UPDATESCORE = "UPDATESCORE";
 export const UPDATEANSWERS = "UPDATEANSWERS";
-
-export const LOCALDATA = "LOCALDATA"
+export const UPDATENAME = "UPDATENAME";
+export const LOCALDATA = "LOCALDATA";

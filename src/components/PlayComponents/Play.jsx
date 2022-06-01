@@ -58,7 +58,6 @@ export default function Play() {
             />
           </Grid>
         ))}
-
         <Grid container spacing={2}>
           <Grid item xs={10}>
             {isRight == "Wrong Answer" ? (
