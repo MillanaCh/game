@@ -24,6 +24,7 @@ export default function Play() {
     }, {});
     setAllQuestions(allquestions);
   }
+
   let dataArray = Object.entries(questions);
   let filteredData = [];
 
@@ -31,6 +32,14 @@ export default function Play() {
     if (el[1].length === 5) filteredData.push(el);
     return el;
   });
+
+  const setVisibleItem = (index, childIndex) => {
+    // console.log(index, childIndex);
+    filteredData[index][1][childIndex] = {
+      ...filteredData[index][1][childIndex],
+      visible: true,
+    };
+  };
 
   useEffect(() => {
     allQuestions();
@@ -42,7 +51,11 @@ export default function Play() {
       <Card sx={{ backgroundColor: "#136998", borderRadius: "0" }}>
         {filteredData.map((el, index) => (
           <Grid item xs={12} key={index}>
-            <Categories el={el} setIsRight={setIsRight} />
+            <Categories
+              el={el}
+              setIsRight={setIsRight}
+              setVisible={(childIndex) => setVisibleItem(index, childIndex)}
+            />
           </Grid>
         ))}
 
@@ -94,7 +107,7 @@ export default function Play() {
                   borderRadius: "7px",
                 }}
               >
-                <h3>Finish</h3>
+                <h3>EXIT</h3>
               </button>
             </Link>
           </Grid>

@@ -14,7 +14,7 @@ const Item = styled(Paper)(() => ({
   fontSize: "16px",
 }));
 
-const Categories = ({ el, setIsRight }) => {
+const Categories = ({ el, setIsRight, setVisible }) => {
   return (
     <>
       <Box
@@ -30,7 +30,11 @@ const Categories = ({ el, setIsRight }) => {
               <Grid item xs={4} md={2}>
                 <p className="category-name">{el[0].toUpperCase()}</p>
               </Grid>
-              <Questions el={el} setIsRight={setIsRight} />
+              <Questions
+                el={el}
+                setIsRight={setIsRight}
+                setVisible={setVisible}
+              />
             </Item>
           </Grid>
         </Grid>

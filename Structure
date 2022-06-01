@@ -15,3 +15,6 @@ PLAY
 Extra materials
     10) Read about useRef
     11) CSS make root colors
+
+    localStorage cookie должен сохранять статистику
+    завершить и новый игрок

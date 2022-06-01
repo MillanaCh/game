@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../Header";
 import { useDispatch } from "react-redux";
 import * as actions from "../../redux/actions/actions";
+import { Link } from "react-router-dom";
 export default function MainPage() {
   const dispatch = useDispatch();
   const [userName, setUserName] = useState("");
@@ -28,12 +29,22 @@ export default function MainPage() {
             className="input-name"
             onChange={(e) => handleChange(e)}
           />
+
           <button
             className="btn-name"
             type="submit"
             onClick={(e) => handleClick(e)}
           >
-            Enter
+            {userName ? (
+              <Link
+                to="/play"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Enter
+              </Link>
+            ) : (
+              <p>Enter</p>
+            )}
           </button>
         </form>
       </div>

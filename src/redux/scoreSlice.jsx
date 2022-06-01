@@ -7,7 +7,7 @@ const scoreReducer = (state = 0, action) => {
     case actions.ADDSCORE:
       return state + action.payload;
     case actions.UPDATESCORE:
-      return state = 0
+      return (state = 0);
     default:
       return state;
   }

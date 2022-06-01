@@ -66,7 +66,15 @@ export default function Info() {
             </header>
             {secondQuestion && (
               <p>
-               Normally, you are able to submit one Anytime Test per one-year period. But in celebration of JeoparDAY!, you will be allowed to take the test on March 30 regardless of when you last took the test. Taking the test on JeoparDAY! will not count towards the one year cycle of eligibility. For example, if you took the test on December 1, 2021 and then again on March 30, 2022 (JeoparDAY!), the next time you would be able to take the test would be on December 1, 2022. . It’s an extra chance to give it your best shot!
+                Normally, you are able to submit one Anytime Test per one-year
+                period. But in celebration of JeoparDAY!, you will be allowed to
+                take the test on March 30 regardless of when you last took the
+                test. Taking the test on JeoparDAY! will not count towards the
+                one year cycle of eligibility. For example, if you took the test
+                on December 1, 2021 and then again on March 30, 2022
+                (JeoparDAY!), the next time you would be able to take the test
+                would be on December 1, 2022. . It’s an extra chance to give it
+                your best shot!
               </p>
             )}
           </article>
@@ -75,7 +83,8 @@ export default function Info() {
               style={{ display: "flex", justifyContent: "space-between" }}
             >
               <h4>
-              AM I ELIGIBLE TO TAKE THE ANYTIME TEST ON JEOPARDAY! IF I HAVE STARTED THE JEOPARDY! CONTESTANT INTERVIEW PROCESS?
+                AM I ELIGIBLE TO TAKE THE ANYTIME TEST ON JEOPARDAY! IF I HAVE
+                STARTED THE JEOPARDY! CONTESTANT INTERVIEW PROCESS?
               </h4>
               <button
                 className="btn"
@@ -86,7 +95,9 @@ export default function Info() {
             </header>
             {thirdQuestion && (
               <p>
-               You will be allowed to take the Anytime Test on JeoparDAY!...for fun! However, your score will not affect your eligibility for getting on the show.
+                You will be allowed to take the Anytime Test on JeoparDAY!...for
+                fun! However, your score will not affect your eligibility for
+                getting on the show.
               </p>
             )}
           </article>

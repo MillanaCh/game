@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import * as actions from "../../redux/actions/actions";
 import { debounce } from "lodash";
 
-const Questions = ({ el, setIsRight }) => {
+const Questions = ({ el, setIsRight, setVisible }) => {
   let dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [selectedElement, setSelectedElement] = useState([]);
@@ -13,9 +13,10 @@ const Questions = ({ el, setIsRight }) => {
   let interval = useRef();
 
   const [seconds, setSeconds] = useState(0);
-  
-  const handleClickOpen = (event, item) => {
-    event.target.className = "value-toggle";
+
+  const handleClickOpen = (index, item) => {
+    // event.target.className = "value-toggle";
+    setVisible(index);
     setSeconds(20);
     setOpen(true);
     setSelectedElement(item);
@@ -41,7 +42,7 @@ const Questions = ({ el, setIsRight }) => {
   }, 500);
 
   function checkAnswer() {
-    if (answer.toLowerCase() === selectedElement.answer.toLowerCase()) {
+    if (answer.toUpperCase() === selectedElement.answer.toUpperCase()) {
       setIsRight("Right Answer");
       dispatch({ type: actions.ADDSCORE, payload: selectedElement.value });
       dispatch({ type: actions.ANSWERS, payload: "RightAnswer" });
@@ -71,8 +72,8 @@ const Questions = ({ el, setIsRight }) => {
     <>
       {el[1].map((item, index) => (
         <button
-          className="valueBtn"
-          onClick={(event) => handleClickOpen(event, item)}
+          className={!item.visible ? "valueBtn" : "value-toggle"}
+          onClick={() => handleClickOpen(index, item)}
           key={index}
         >
           {item.value}
